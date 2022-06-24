@@ -1,0 +1,16 @@
+*{
+    margin: 0px auto;
+}
+#wrapper{
+    width: 960px;
+}
+#header, #footer{
+    padding: 15px;
+    background-color: aquamarine;
+    text-align: center;
+}
+#content{
+    min-height: 500px;
+    text-align: center;
+
+}
