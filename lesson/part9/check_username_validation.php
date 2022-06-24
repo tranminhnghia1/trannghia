@@ -1,17 +1,39 @@
 <?php
+require 'lib/validation.php'; //gọi file khác
 if(isset($_POST['btn_login'])){
     $error = array(); //phất cờ
     if(empty($_POST['username'])){
         //hạ cờ
         $error['username'] = "không được để trống tên đăng nhập";
     }else{
-        $username = $_POST['username'];
+        if(!(strlen($_POST['username']) >=6 && strlen($_POST['username']) <= 32)){
+            $error['username'] = "username yêu cầu nhập từ 6 đến 32 ký tự";
+        }else{
+            if(!is_username($_POST['username'])){ //rút gọn 
+                $error['username'] = "username chỉ đc phép sử dụng ký tự, chứ số, dấu chấm, dấu gạch dưới và từ 6 đến 32 ký tự";
+            }else{
+                $username = $_POST['username'];
+                echo $username;
+            }
+        }
     }
+
+
 
     if(empty($_POST['password'])){
         //hạ cờ
         $error['password'] = "không được để trống mật khẩu";
     }else{
+        if(!(strlen($_POST['password']) >=6 && strlen($_POST['password']) <=32)){
+            $error['password'] = "password yêu cầu nhập từ 6 đến 32 ký tự";
+        }else{
+            if(!is_password($_POST['password'])){
+                $error['password'] = "password chỉ đc phép sử dụng ký tự hoa, chứ số, dấu chấm, ký tự đặc biệt, dấu gạch dưới và từ 6 đến 32 ký tự";
+            }else{
+                $password = $_POST['password'];
+                echo $password;
+            }
+        }
         $password = $_POST['password'];
     }
 
